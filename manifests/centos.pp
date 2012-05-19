@@ -1,5 +1,11 @@
 class lighttpd::centos inherits lighttpd::base {
-  file{
+  package {
+    'lighttpd':
+      ensure => installed;
+    'libhttpd-fastcgi':
+      ensure => installed;
+  }
+  file {
     '/var/cache/lighttpd':
       ensure => directory,
       require => Package['lighttpd'];

@@ -1,13 +1,11 @@
 class lighttpd::base {
-  package{'lighttpd':
-    ensure => installed,
-  }
 
-  service{lighttpd:
-    ensure => running,
-    enable => true,
-    hasstatus => true, 
-    require => Package[lighttpd],
+  service{
+    lighttpd:
+      ensure => running,
+      enable => true,
+      hasstatus => true, 
+      require => Package[lighttpd];
   }
 
   file{'/etc/lighttpd/lighttpd.conf':

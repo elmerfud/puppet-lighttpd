@@ -3,17 +3,34 @@
 # GPLv3
 
 class lighttpd {
-  case $operatingsystem {
-    debian,ubuntu: { include lighttpd::debian }
-    centos,redhat,fedora: { include lighttpd::centos }
-    default: { include lighttpd::base }
+  class {
+    'lighttpd::package':
+      notify => Class['lighttpd::service'];
   }
 
-  if $use_shorewall {
-    include shorewall::rules::http
+  class {
+    'lighttpd::config': 
+      require => Class['lighttpd::package'],
+      notify => Class['lighttpd::service'];
   }
-  if $use_munin {
-    include lighttpd::munin
-  }
+
+#  case $operatingsystem {
+#    /Debian|Ubuntu/: { 
+#      include lighttpd::debian 
+#    }
+#    /RedHat|CentOS/: { 
+#      include lighttpd::centos 
+#    }
+#    default: { 
+#      include lighttpd::base 
+#    }
+#  }
+
+#  if $use_shorewall {
+#    include shorewall::rules::http
+#  }
+#  if $use_munin {
+#    include lighttpd::munin
+#  }
 }
 
