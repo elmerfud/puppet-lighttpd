@@ -24,14 +24,8 @@ class lighttpd::params {
   $server_followsymlink = 'enable'
   $server_uploaddirs = '/var/tmp'
 
-  $server_username = $::operatingsystem ? {
-    /(?i-mx:debian|ubuntu)/                    => 'lighttpd',
-    /(?i-mx:fedora|rhel|centos|suse|opensuse)/ => 'lighttpd',
-  }
-  $server_groupname = $::operatingsystem ? {
-    /(?i-mx:debian|ubuntu)/                    => 'lighttpd',
-    /(?i-mx:fedora|rhel|centos|suse|opensuse)/ => 'lighttpd',
-  }
+  $server_username = 'lighttpd'
+  $server_groupname = 'lighttpd'
 
   case $::osfamily {
     'RedHat': {
