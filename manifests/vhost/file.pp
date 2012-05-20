@@ -18,6 +18,8 @@ define lighttpd::vhost::file(
     "${document_dir}/htdocs":
       ensure => directory;
     "${document_dir}/logs":
+      owner => $lightppd::params::username,
+      group => $lighttpd::params::groupname,
       ensure => directory;
     "${document_dir}/logs/${accesslog}":
       ensure => $ensure,
