@@ -336,7 +336,7 @@ $HTTP["url"] =~ "\.pdf$" {
 ##
 ## .php, .pl, .fcgi are most often handled by mod_fastcgi or mod_cgi
 ##
-static-file.exclude-extensions = ( <% staticfile_excludeextensionts.each do |extension| %> "<%= extension %>", <% end %> )
+static-file.exclude-extensions = ( <% staticfile_excludeextensions.each do |extension| %> "<%= extension %>", <% end %> )
 
 ##
 ## error-handler for status 404
