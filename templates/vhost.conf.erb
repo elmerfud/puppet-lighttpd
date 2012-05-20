@@ -22,7 +22,7 @@ $HTTP["host"] <%= host_def %> {
   <% end %> )
   <% end %>
   <% unless fastcgi_extension == :undef -%>
-  fastcgi.server = ( "<%= fastcgi_name %>" =>
+  fastcgi.server = ( "<%= fastcgi_extension %>" =>
                      ( "<%= fastcgi_name %>" =>
                        ( "host" => "<%= fastcgi_host %>",
                          "port" => <%= fastcgi_port %>,
