@@ -21,7 +21,7 @@ class lighttpd::config(
   $server_maxconnections = $lighttpd::params::server_maxconnections,
   $server_maxkeepaliveidle = $lighttpd::params::server_maxkeepaliveidle,
   $server_maxkeepaliverequests = $lighttpd::params::server_maxkeepaliverequests,
-  $staticfile_excludeextenstions = $lighttpd::params::staticfile_excludeextensions,
+  $staticfile_excludeextensions = $lighttpd::params::staticfile_excludeextensions,
   $server_followsymlink = $lighttpd::params::server_followsymlink,
   $server_uploaddirs = $lighttpd::params::server_uploaddirs,
   $modules = ['accesslog', 'access']
