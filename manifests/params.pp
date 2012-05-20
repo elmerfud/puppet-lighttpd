@@ -20,7 +20,7 @@ class lighttpd::params {
   $server_maxconnections = '1024'
   $server_maxkeepaliveidle = '30'
   $server_maxkeepaliverequests = '15'
-  $staticfile_excludeextenstions = [".php", ".pl", ".fcgi", ".scgi"]
+  $staticfile_excludeextensions = [".php", ".pl", ".fcgi", ".scgi"]
   $server_followsymlink = 'enable'
   $server_uploaddirs = '/var/tmp'
 
