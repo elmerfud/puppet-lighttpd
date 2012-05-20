@@ -18,12 +18,12 @@ define lighttpd::module(
         undef => undef,
         true => "puppet:///modules/lighttpd/${file_name}",
         default => $source
-      }
+      },
       content => $content ? {
         undef => undef,
         true => template("lighttpd/${file_name}.erb"),
         defualt => template($content)
- 
-
+      };
+  }
 }
 
