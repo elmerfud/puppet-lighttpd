@@ -1,4 +1,4 @@
-class nginx::service {
+class lighttpd::service {
 
   service {
     'lighttpd':
