@@ -6,9 +6,9 @@ class lighttpd {
   class {
     'lighttpd::package':
       notify => Class['lighttpd::service'];
-    'lighttpd::config': 
-      require => Class['lighttpd::package'],
-      notify => Class['lighttpd::service'];
+#    'lighttpd::config': 
+#      require => Class['lighttpd::package'],
+#      notify => Class['lighttpd::service'];
     'lighttpd::service':
   }
 
