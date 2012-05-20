@@ -15,5 +15,22 @@ $HTTP["host"] <%= host_def %> {
   ## At the moment you cant have different error log files.
   ##
   accesslog.filename          = "<%= document_dir %>/logs/<%= accesslog %>"
+ 
+  <% unless rewrite_once == :undef -%>
+  url.rewrite-once = ( <% rewrite_once.each do |rewrite_rule| -%> 
+    <%= rewrite_rule %>,
+  <% end %> )
+  <% end %>
+  <% unless fastcgi_extension == :undef -%>
+  fastcgi.server = ( "<%= fastcgi_name %>" =>
+                     ( "<%= fastcgi_name %>" =>
+                       ( "host" => "<%= fastcgi_host %>",
+                         "port" => <%= fastcgi_port %>,
+                         "check-local" => "disable",
+                         "broken-scriptfilename" => "enable",
+                       )
+                     )
+                   )
+  <% end %>
 }
 

@@ -3,6 +3,11 @@ define lighttpd::vhost::file(
   $server_name = undef,
   $document_dir = undef,
   $accesslog = undef,
+  $fastcgi_extension = undef,
+  $fastcgi_name = undef,
+  $fastcgi_host = '127.0.0.1',
+  $fastcgi_port = '9001',
+  $rewrite_once = undef,
   $ensure = present,
   $vhost_source = 'absent',
   $content = 'absent') {
@@ -11,7 +16,9 @@ define lighttpd::vhost::file(
     "/etc/lighttpd/vhosts.d/${name}.conf":
       ensure => $ensure,
       notify => Class['lighttpd::service'],
-      owner => root, group => 0, mode => 0644,
+      owner => root, 
+      group => 0, 
+      mode => 0644,
       content => template('lighttpd/vhost.conf.erb');
     $document_dir:
       ensure => directory;
