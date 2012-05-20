@@ -24,13 +24,12 @@ class lighttpd::params {
   $server_followsymlink = 'enable'
   $server_uploaddirs = '/var/tmp'
 
-  $server_username = 'lighttpd'
-  $server_groupname = 'lighttpd'
-
   case $::osfamily {
     'RedHat': {
       $config_file = '/etc/lighttpd/lighttpd.conf'
       $modules_file = '/etc/lighttpd/modules.conf'
+      $server_username = 'lighttpd'
+      $server_groupname = 'lighttpd'
     }
   }
 
