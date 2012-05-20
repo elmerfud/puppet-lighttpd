@@ -9,7 +9,7 @@ class lighttpd::config(
   $socket_dir = $lighttpd::params::socket_dir,
   $server_port = $lighttpd::params::server_port,
   $server_bind = $lighttpd::params::server_bind,
-  $server_username = $lightppd::params::server_username,
+  $server_username = $lighttpd::params::server_username,
   $server_groupname = $lighttpd::params::server_groupname,
   $document_root = $lighttpd::params::document_root,
   $server_tag = $lighttpd::params::server_tag,
