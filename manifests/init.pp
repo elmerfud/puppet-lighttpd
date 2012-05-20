@@ -14,6 +14,13 @@ class lighttpd {
       notify => Class['lighttpd::service'];
   }
 
+  anchor {
+    'lighttpd::begin':
+      before => Class['lighttpd::package'],
+      notify => Class['lighttpd::service'];
+    'lighttpd::end':
+      requre => Class['lighttpd::service'];
+  }
 #  case $operatingsystem {
 #    /Debian|Ubuntu/: { 
 #      include lighttpd::debian 
