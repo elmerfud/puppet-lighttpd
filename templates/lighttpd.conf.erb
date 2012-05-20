@@ -424,6 +424,6 @@ server.upload-dirs = ( "<%= server_uploaddirs %>" )
 ## custom includes like vhosts.
 ##
 #include "conf.d/config.conf"
-#include_shell "cat /etc/lighttpd/vhosts.d/*.conf"
+include_shell "cat /etc/lighttpd/vhosts.d/*.conf"
 ##
 #######################################################################
