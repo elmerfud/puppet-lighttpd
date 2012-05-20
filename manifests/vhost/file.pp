@@ -21,7 +21,7 @@ define lighttpd::vhost::file(
       ensure => directory;
     "${document_dir}/logs/${accesslog}":
       ensure => $ensure,
-      user => $lightppd::params::username,
+      owner => $lightppd::params::username,
       group => $lighttpd::params::groupname;
   }
 
