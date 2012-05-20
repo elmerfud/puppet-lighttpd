@@ -6,12 +6,10 @@ class lighttpd {
   class {
     'lighttpd::package':
       notify => Class['lighttpd::service'];
-  }
-
-  class {
     'lighttpd::config': 
       require => Class['lighttpd::package'],
       notify => Class['lighttpd::service'];
+    'lighttpd::service':
   }
 
   anchor {
@@ -21,6 +19,8 @@ class lighttpd {
     'lighttpd::end':
       require => Class['lighttpd::service'];
   }
+
+
 #  case $operatingsystem {
 #    /Debian|Ubuntu/: { 
 #      include lighttpd::debian 
