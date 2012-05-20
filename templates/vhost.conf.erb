@@ -1,0 +1,19 @@
+#######################################################################
+##
+## For more examples check:
+##
+## http://www.lighttpd.net/documentation/configuration.html#conditional-configuration
+##
+$HTTP["host"] <%= host_def %> {
+  var.server_name = "<%= server_name %>"
+
+  server.name = server_name
+
+  server.document-root = "<%= document_dir %>/htdocs"
+  ##
+  ## use a seperate access log file
+  ## At the moment you cant have different error log files.
+  ##
+  accesslog.filename          = "<%= document_dir %>/logs/<%= accesslog %>"
+}
+

@@ -36,6 +36,12 @@ class lighttpd::config(
       content => template('lighttpd/modules.conf.erb'),
       mode => '0644',
       notify => Class['lighttpd::service'];
+    $lighttpd::params::document_root:
+      ensure => directory;
+    $lighttpd::params::server_root:
+      ensure => directory;
+    $lighttpd::params::vhosts_dir:
+      ensure => directory;
   }
 
   lighttpd::module {

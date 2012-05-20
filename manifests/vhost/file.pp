@@ -1,37 +1,28 @@
 define lighttpd::vhost::file(
-    $ensure = present,
-    $vhost_source = 'absent',
-    $content = 'absent'
-){
-    include ::lighttpd::vhosts
-    file{"/etc/lighttpd/vhosts.d/${name}.conf":
-        ensure => $ensure,
-        notify => Service['lighttpd'],
-        owner => root, group => 0, mode => 0644;
-    }
+  $host_def = undef,
+  $server_name = undef,
+  $document_root = undef,
+  $accesslog = undef,
+  $ensure = present,
+  $vhost_source = 'absent',
+  $content = 'absent') {
 
-    case $content {
-        'absent': {
-            File["/etc/lighttpd/vhosts.d/${name}.conf"]{
-                source => $vhost_source ? {
-                  'absent'  => [
-                    "puppet:///modules/site-lighttpd/vhosts.d/$fqdn/$name.conf",
-                    "puppet:///modules/site-lighttpd/vhosts.d/$lighttpd_cluster_node/$name.conf",
-                    "puppet:///modules/site-lighttpd/vhosts.d/$operatingsystem.$lsbdistcodename/$name.conf",
-                    "puppet:///modules/site-lighttpd/vhosts.d/$operatingsystem/$name.conf",
-                    "puppet:///modules/site-lighttpd/vhosts.d/$name.conf",
-                    "puppet:///modules/lighttpd/vhosts.d/$operatingsystem.$lsbdistcodename/$name.conf",
-                    "puppet:///modules/lighttpd/vhosts.d/$operatingsystem/$name.conf",
-                    "puppet:///modules/lighttpd/vhosts.d/$name.conf"
-                  ],
-                  default => "puppet:///$vhost_source",
-              }
-            }
-        }
-        default: {
-            File["/etc/lighttpd/vhosts.d/${name}.conf"]{
-                content => $content,
-            }
-        }
-    }
+  file {
+    "/etc/lighttpd/vhosts.d/${name}.conf":
+      ensure => $ensure,
+      notify => Class['lighttpd::service'],
+      owner => root, group => 0, mode => 0644,
+      content => template('lighttpd/vhost.conf.erb');
+    $document_dir:
+      ensure => directory;
+    "${document_dir}/htdocs":
+      ensure => directory;
+    "${document_dir}/logs":
+      ensure => directory;
+    "${document_dir}/logs/${accesslog}":
+      ensure => $ensure,
+      user => $lightppd::params::username,
+      group => $lighttpd::params::groupname;
+  }
+
 }
