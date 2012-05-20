@@ -38,4 +38,10 @@ class lighttpd::config(
       notify => Class['lighttpd::service'];
   }
 
+  lighttpd::module {
+    $modules:
+      content => true,
+      notify => Class['lighttpd::service'];
+  }
+
 }

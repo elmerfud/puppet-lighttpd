@@ -48,7 +48,7 @@ server.modules = (
 )
 
 <% modules.each do |l_module| %>
-  "conf.d/<%= l_module %>"
+include  "conf.d/<%= l_module %>.conf"
 <% end %>
 
 
