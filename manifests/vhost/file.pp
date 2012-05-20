@@ -1,7 +1,7 @@
 define lighttpd::vhost::file(
   $host_def = undef,
   $server_name = undef,
-  $document_root = undef,
+  $document_dir = undef,
   $accesslog = undef,
   $ensure = present,
   $vhost_source = 'absent',
