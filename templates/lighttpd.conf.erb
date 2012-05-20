@@ -94,7 +94,7 @@ server.use-ipv6 = "enable"
 
 ##
 ## bind to a specific IP
-##<% unless if_set == :undef %>
+##<% unless server_bind == :undef %>
 server.bind = "<%= server_bind %>"
 <% end %>
 
